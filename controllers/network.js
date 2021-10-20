@@ -109,5 +109,4 @@ exports.getNetWorkActivity = async (ctx, next) => {
 
     returnData = result;
     ctx.body = { returnData };
-    await next();
 };

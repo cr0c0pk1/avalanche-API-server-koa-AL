@@ -23,11 +23,9 @@ exports.getAddressInfoByHash = async (ctx, next) => {
         if (addressInfoFromXChain[0] == 1) {
             returnData = addressInfoFromXChain[1];
             ctx.body = { returnData };
-            await next();
         } else {
             returnData = addressInfoFromXChain;
             ctx.body = { returnData };
-            await next();
         }
     } else if ((ctx.params.hash).charAt(0) == P_CHAIN) {
         addressInfoFromPChain = await pChainMethods.getAddressInfoFromPChain(ctx.params.hash);
@@ -35,11 +33,9 @@ exports.getAddressInfoByHash = async (ctx, next) => {
         if (addressInfoFromPChain[0] == 1) {
             returnData = addressInfoFromPChain[1];
             ctx.body = { returnData };
-            await next();
         } else {
             returnData = addressInfoFromPChain[1];
             ctx.body = { returnData };
-            await next();
         }
     } else if ((ctx.params.hash).slice(0, 2) == C_CHAIN){
         addressInfoFromCChain = await cChainMethods.getAddressInfoFromCChain(ctx.params.hash);
@@ -47,11 +43,9 @@ exports.getAddressInfoByHash = async (ctx, next) => {
         if (addressInfoFromCChain[0] == 1) {
             returnData = addressInfoFromCChain[1];
             ctx.body = { returnData };
-            await next();
         } else {
             returnData = addressInfoFromCChain;
             ctx.body = { returnData };
-            await next();
         }
     } else {
         ctx.body = JSON.parse('{"result":"wrong input"}');

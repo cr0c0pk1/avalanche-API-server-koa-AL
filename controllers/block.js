@@ -12,11 +12,9 @@ exports.getBlockByHash = async (ctx, next) => {
     if (blockFromCChain[0] == 1) {
         returnData = blockFromCChain[1]
         ctx.body = { returnData };
-        await next();
     } else {
         returnData = blockFromCChain[1]
         ctx.body = { returnData };
-        await next();
     }
 };
 
@@ -29,11 +27,9 @@ exports.getBlockByNumber = async (ctx, next) => {
     if (cChainNumber[0] == 1) {
         returnData = cChainNumber[1];
         ctx.body = { returnData };
-        await next();
     } else {
         returnData = cChainNumber[0];
         ctx.body = { returnData };
-        await next();
     }
 };
 
@@ -62,7 +58,6 @@ exports.getXBlocksFromNthFromCChain = async (ctx, next) => {
 
     returnData = cChainArray;
     ctx.body = { returnData };
-    await next();
 };
 
 

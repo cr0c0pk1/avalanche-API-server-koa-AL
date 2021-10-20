@@ -22,19 +22,15 @@ exports.getTransactionByHash = async (cxt, next) => {
 
     if (xChainTransaction == 1 && cChainTransaction[0] == 1 && pChainTransaction == 1) {
         cxt.body = JSON.parse('{"result":"connection refused to avalanche client or api call rejected"}');
-        await next();
     } else if (xChainTransaction != 1) {
         returnData = xChainTransaction;
         cxt.body = { returnData };
-        await next();
     } else if (cChainTransaction[0] != 1) {
         returnData = cChainTransaction[1];
         cxt.body = { returnData };
-        await next();
     } else if (pChainTransaction != 1) {
         returnData = pChainTransaction;
         cxt.body = { returnData };
-        await next();
     }
 
 };
@@ -51,11 +47,9 @@ exports.getXTransactionsAfterNthFromAddress = async (cxt, next) => {
         if (xChainTransactions[0] == 1) {
             returnData = xChainTransactions[1];
             cxt.body = { returnData };
-            await next();
         } else {
             returnData = xChainTransactions[1];
             cxt.body = { returnData };
-            await next();
         }
     } else if ((cxt.params.address).charAt(0) == P_CHAIN) {
         pChainTransactions = await pChainMethods.getXTransactionsAfterNthFromAddressFromPChain(cxt.params.address, cxt.params.n, cxt.params.x);
@@ -65,14 +59,12 @@ exports.getXTransactionsAfterNthFromAddress = async (cxt, next) => {
         } else {
             returnData = pChainTransactions;
             cxt.body = { returnData };
-            await next();
         }
     } else if ((cxt.params.address).slice(0, 2) == C_CHAIN) {
         cChainTransactions = await cChainMethods.getXTransactionsAfterNthFromAddressFromCChain(cxt.params.address, cxt.params.n, cxt.params.x);
 
         returnData = cChainTransactions;
         cxt.body = { returnData };
-        await next();
     } else {
         cxt.body = JSON.parse('{"result":"wrong chain"}');
     }
@@ -87,11 +79,10 @@ exports.getXPendingTransactionsAfterNth = async (cxt, next) => {
         if (cChainTransactions[0] == 1) {
             returnData = cChainTransactions[1];
             cxt.body = { returnData };
-            await next();
+            
         } else {
             returnData = cChainTransactions[1];
             cxt.body = { returnData };
-            await next();
         }
     } else {
         cxt.body = JSON.parse('{"result":"n and x < 0"}');
@@ -106,11 +97,10 @@ exports.getRecentTransactionsFromXChain = async (cxt, next) => {
     if (xChainTransaction[0] == 1) {
         returnData = xChainTransaction[1];
         cxt.body = { returnData };
-        await next();
+        
     } else {
         returnData = xChainTransaction[1];
         cxt.body = { returnData };
-        await next();
     }
 };
 
@@ -122,10 +112,8 @@ exports.getRecentTransactionsFromPChain = async (cxt, next) => {
     if (pChainTransaction[0] == 1) {
         returnData = pChainTransaction[1];
         cxt.body = { returnData };
-        await next();
     } else {
         returnData = pChainTransaction[1];
         cxt.body = { returnData };
-        await next();
     }
 };

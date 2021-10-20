@@ -17,7 +17,7 @@ router
     .get('/transactions/:address/:n/:x', transactionController.getXTransactionsAfterNthFromAddress)
     .get('/transactions/:n/:x', transactionController.getXPendingTransactionsAfterNth)
     .get('/transactions/recentpchain', transactionController.getRecentTransactionsFromPChain)
-    .get('/transactions/recentxchain', transactionController.getRecentTransactionsFromXChain)
+    .get('/transactions/recentxchain', transactionController.getRecentTransactionsFromXChain);
 
 module.exports = {
     routes () { return router.routes() }
